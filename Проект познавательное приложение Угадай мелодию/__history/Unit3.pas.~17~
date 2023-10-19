@@ -1,0 +1,87 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.jpeg, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.MPlayer, Vcl.Buttons;
+
+type
+  TForm3 = class(TForm)
+    Image1: TImage;
+    Label1: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    MediaPlayer1: TMediaPlayer;
+    OpenDialog1: TOpenDialog;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    Label2: TLabel;
+    Button5: TButton;
+    RadioGroup1: TRadioGroup;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+
+
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit2, Unit4;
+
+procedure TForm3.BitBtn1Click(Sender: TObject);
+begin
+MediaPlayer1.FileName:=(ExtractFilePath(ParamStr(0))+'Минусы\хиты 90-х минусы\1.mp3');
+MediaPlayer1.Open;
+MediaPlayer1.Play;
+RadioGroup1.Visible:=true
+end;
+
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+Button1.Visible:=False;
+Button2.Visible:=False;
+Button3.Visible:=False;
+Button4.Visible:=False;
+MediaPlayer1.Visible:=True;
+BitBtn1.Visible:=True;
+BitBtn2.Visible:=True;
+BitBtn3.Visible:=True;
+BitBtn4.Visible:=True;
+
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+Label1.Caption:='Предлогаю вам выбрать котегорию песен'+#13+'которую вы хотите угадать'
+end;
+
+
+
+
+
+procedure TForm3.RadioGroup1Click(Sender: TObject);
+begin
+if (radiogroup1.Items(1).Checked = true) then showmessage('Вы заработали 10 баллов');
+
+end;
+
+end.

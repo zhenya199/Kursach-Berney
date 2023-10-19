@@ -1,0 +1,78 @@
+unit Unit4;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.jpeg,
+  Vcl.ExtCtrls;
+
+type
+  TForm4 = class(TForm)
+    Image1: TImage;
+    Memo1: TMemo;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    procedure Memo1Change(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form4: TForm4;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit2, Unit3;
+
+procedure TForm4.Button1Click(Sender: TObject);
+var f:Textfile;s:string;
+begin
+  assignfile(f,'C:\rules.txt');
+  reset(f);
+    while not eof(f) do
+    begin
+    readln(f,s);
+    memo1.Lines.Add(s);
+    end;
+    closefile(f);
+
+end;
+
+procedure TForm4.Button2Click(Sender: TObject);
+begin
+Form4.Hide;
+Form3.SHow;
+end;
+
+procedure TForm4.Button3Click(Sender: TObject);
+begin
+Form4.Hide;
+Form2.Show;
+end;
+
+procedure TForm4.Memo1Change(Sender: TObject);
+var
+    f : TextFile;
+    s : String;
+begin
+    AssignFile(f, 'правила игры.txt');
+    Reset(f);
+
+    while (not EOF(f)) do begin
+      Readln(f, s);
+      Memo1.Lines.Add(s);
+    end;
+
+    CloseFile(f);
+end;
+
+end.
